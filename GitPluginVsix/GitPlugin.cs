@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using GitPluginVsix.Commands;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
@@ -67,8 +68,11 @@ namespace GitPluginVsix
         protected override void Initialize()
         {
             base.Initialize();
-            Commands.About.Initialize(this);
-            Commands.Browse.Initialize(this);
+            
+            var commandSet=new Guid("462ba810-16a0-4970-8816-a746accc1d5c");
+            Commands.Support.Commands.RegisterMenu<Browse>(commandSet, 0x0100, this);
+            Commands.Support.Commands.RegisterMenu<About>(commandSet, 0x0620, this);
+
         }
 
         #endregion
