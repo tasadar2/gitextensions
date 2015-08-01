@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidGitPlugin">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <Menus>
+      <Menu guid="PluginCmdSet" id="TopMenu" priority="0x100" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>GITEXT</ButtonText>
+          <CommandName>GITEXT</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+    <Groups>
+      <Group guid="PluginCmdSet" id="RepoMenuGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+
+      <Group guid="PluginCmdSet" id="CommitMenuGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+
+      <Group guid="PluginCmdSet" id="PatchMenuGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+
+      <Group guid="PluginCmdSet" id="FileMenuGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+
+      <Group guid="PluginCmdSet" id="BranchMenuGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+
+      <Group guid="PluginCmdSet" id="ToolsGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="TopMenu" />
+      </Group>
+    </Groups>
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      <Button guid="MenuCmdSet" id="Browse" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="RepoMenuGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Browse</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="CloneRepo" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="RepoMenuGroup" />
+        <Icon guid="ResourceImages" id="Clone" />
+        <Strings>
+          <ButtonText>Clone Repository</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="CreateNewRepo" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="RepoMenuGroup" />
+             <Icon guid="ResourceImages" id="CreateRepo" />
+   <Strings>
+          <ButtonText>Create New Repository</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="MenuCmdSet" id="Commit" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+            <Icon guid="ResourceImages" id="Commit" />
+    <Strings>
+          <ButtonText>Commit</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Pull" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+             <Icon guid="ResourceImages" id="Pull" />
+   <Strings>
+          <ButtonText>Pull</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Push" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+              <Icon guid="ResourceImages" id="Push" />
+  <Strings>
+          <ButtonText>Push</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Stash" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+              <Icon guid="ResourceImages" id="Stash" />
+  <Strings>
+          <ButtonText>Stash</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="ManageRemotes" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+             <Icon guid="ResourceImages" id="Remotes" />
+   <Strings>
+          <ButtonText>Manage remotes</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="EditGitIgnore" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
+            <Icon guid="ResourceImages" id="Edit" />
+    <Strings>
+          <ButtonText>Edit .gitignore</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="MenuCmdSet" id="ApplyPatch" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="PatchMenuGroup" />
+        <Strings>
+          <ButtonText>Apply patch</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="FormatPatch" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="PatchMenuGroup" />
+        <Strings>
+          <ButtonText>Format patch</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="MenuCmdSet" id="ViewChanges" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="FileMenuGroup" />
+        <Strings>
+          <ButtonText>View changes</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="FindFile" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="FileMenuGroup" />
+           <Icon guid="ResourceImages" id="Find" />
+     <Strings>
+          <ButtonText>Find file</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="MenuCmdSet" id="CheckoutBranch" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+              <Icon guid="ResourceImages" id="CheckoutBranch" />
+  <Strings>
+          <ButtonText>Checkout branch</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="CreateBranch" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+            <Icon guid="ResourceImages" id="CreateBranch" />
+    <Strings>
+          <ButtonText>Create branch</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Merge" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+            <Icon guid="ResourceImages" id="Merge" />
+    <Strings>
+          <ButtonText>Merge</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Rebase" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+             <Icon guid="ResourceImages" id="Rebase" />
+   <Strings>
+          <ButtonText>Rebase</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Conflicts" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+        <Strings>
+          <ButtonText>Solve mergeconflicts</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="CherryPick" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
+              <Icon guid="ResourceImages" id="CherryPick" />
+  <Strings>
+          <ButtonText>Cherry pick</ButtonText>
+        </Strings>
+      </Button>
+
+
+      <Button guid="MenuCmdSet" id="Bash" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolsGroup" />
+        <Icon guid="ResourceImages" id="Bash" />
+        <Strings>
+          <ButtonText>Git bash</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Settings" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolsGroup" />
+        <Icon guid="ResourceImages" id="Settings" />
+        <Strings>
+          <ButtonText>Setting</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="About" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolsGroup" />
+        <Icon guid="ResourceImages" id="About" />
+        <Strings>
+          <ButtonText>About Git Extensions</ButtonText>
+        </Strings>
+      </Button>
+
+    </Buttons>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others:
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
+            inside a button definition. An important aspect of this declaration is that the element id
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+      <Bitmap guid="ResourceImages" href="Resources\gitextensions.bmp" usedList="Merge, Stash, Copy, ResetBlue, Reset, Rebase, Remotes, Find, Edit, Diff, Clone, CherryPick, Browse, CreateBranch, CheckoutBranch, DoubleFileCheck, FileCheck, Settings, Bash, About, Unknown, CreateRepo, Pull, Push, Commit" />
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidGitPlugin" value="{55a58158-adf2-4032-96fb-b8c3c663b46b}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="PluginCmdSet" value="{70d4d857-3069-4f9d-b727-3f8f3aa97a67}">
+      <IDSymbol name="TopMenu" value="0x0010" />
+
+      <IDSymbol name="RepoMenuGroup" value="0x1020" />
+      <IDSymbol name="CommitMenuGroup" value="0x1030" />
+      <IDSymbol name="PatchMenuGroup" value="0x1040" />
+      <IDSymbol name="FileMenuGroup" value="0x1050" />
+      <IDSymbol name="BranchMenuGroup" value="0x1060" />
+      <IDSymbol name="ToolsGroup" value="0x1070" />
+    </GuidSymbol>
+
+    <GuidSymbol name="MenuCmdSet" value="{462ba810-16a0-4970-8816-a746accc1d5c}">
+      <IDSymbol name="Browse" value="0x0100" />
+      <IDSymbol name="CloneRepo" value="0x0110" />
+      <IDSymbol name="CreateNewRepo" value="0x0120" />
+
+      <IDSymbol name="Commit" value="0x0200" />
+      <IDSymbol name="Pull" value="0x0210" />
+      <IDSymbol name="Push" value="0x0220" />
+      <IDSymbol name="Stash" value="0x0230" />
+      <IDSymbol name="ManageRemotes" value="0x0240" />
+      <IDSymbol name="EditGitIgnore" value="0x0250" />
+
+      <IDSymbol name="ApplyPatch" value="0x0300" />
+      <IDSymbol name="FormatPatch" value="0x0310" />
+
+      <IDSymbol name="ViewChanges" value="0x0400" />
+      <IDSymbol name="FindFile" value="0x0410" />
+
+      <IDSymbol name="CheckoutBranch" value="0x0500" />
+      <IDSymbol name="CreateBranch" value="0x0510" />
+      <IDSymbol name="Merge" value="0x0520" />
+      <IDSymbol name="Rebase" value="0x0530" />
+      <IDSymbol name="Conflicts" value="0x0540" />
+      <IDSymbol name="CherryPick" value="0x0550" />
+
+      <IDSymbol name="Bash" value="0x0600" />
+      <IDSymbol name="Settings" value="0x0610" />
+      <IDSymbol name="About" value="0x0620" />
+    </GuidSymbol>
+
+    <GuidSymbol name="ResourceImages" value="{8704da28-2349-4e8e-8954-ad9710c6908f}">
+      <IDSymbol name="Merge" value="1" />
+      <IDSymbol name="Stash" value="2" />
+      <IDSymbol name="Copy" value="3" />
+      <IDSymbol name="ResetBlue" value="4" />
+      <IDSymbol name="Reset" value="5" />
+      <IDSymbol name="Rebase" value="6" />
+      <IDSymbol name="Remotes" value="7" />
+      <IDSymbol name="Find" value="8" />
+      <IDSymbol name="Edit" value="9" />
+      <IDSymbol name="Diff" value="10" />
+      <IDSymbol name="Clone" value="11" />
+      <IDSymbol name="CherryPick" value="12" />
+      <IDSymbol name="Browse" value="13" />
+      <IDSymbol name="CreateBranch" value="14" />
+      <IDSymbol name="CheckoutBranch" value="15" />
+      <IDSymbol name="DoubleFileCheck" value="16" />
+      <IDSymbol name="FileCheck" value="17" />
+      <IDSymbol name="Settings" value="18" />
+      <IDSymbol name="Bash" value="19" />
+      <IDSymbol name="About" value="20" />
+      <IDSymbol name="Unknown" value="21" />
+      <IDSymbol name="CreateRepo" value="22" />
+      <IDSymbol name="Pull" value="23" />
+      <IDSymbol name="Push" value="24" />
+      <IDSymbol name="Commit" value="25" />
+    </GuidSymbol>
+
+
+    <!--<GuidSymbol name="BrowseImage" value="{8704da28-2349-4e8e-8954-ad9710c6908f}">
+      <IDSymbol name="image" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="CloneImage" value="{c099ec7a-07b0-46c2-a299-2ba5592ff309}">
+      <IDSymbol name="image" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidCreateRepoImage" value="{948cd96a-78f1-4378-85c2-1d00d47941bf}">
+      <IDSymbol name="image" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="AboutImage" value="{b8790f45-2b28-4c55-b2ee-611cb4924384}">
+      <IDSymbol name="image" value="1" />
+    </GuidSymbol>-->
+
+  </Symbols>
+</CommandTable>

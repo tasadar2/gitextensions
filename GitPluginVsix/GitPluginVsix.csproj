@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="Commands\About.cs" />
     <Compile Include="Commands\Browse.cs" />
+    <Compile Include="Commands\Support\Commands.cs" />
+    <Compile Include="Commands\Support\Command.cs" />
+    <Compile Include="Commands\Support\ICommand.cs" />
     <Compile Include="GitPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,34 +67,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <VSCTCompile Include="Commands\GitPlugin.vsct">
+    <VSCTCompile Include="GitPlugin.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
     </VSCTCompile>
-    <None Include="Commands\Resources\13.bmp" />
-    <None Include="Commands\Resources\14.bmp" />
-    <None Include="Commands\Resources\7.bmp" />
-    <None Include="Commands\Resources\8.bmp" />
-    <None Include="Commands\Resources\9.bmp" />
-    <None Include="Commands\Resources\AboutBox.bmp" />
-    <None Include="Commands\Resources\Bash.bmp" />
-    <None Include="Commands\Resources\Configure.bmp" />
-    <None Include="Commands\Resources\Edit.bmp" />
-    <None Include="Commands\Resources\EditAll.bmp" />
-    <None Include="Commands\Resources\IconBranchCheckout.bmp" />
-    <None Include="Commands\Resources\IconBranchCreate.bmp" />
-    <None Include="Commands\Resources\IconBrowseFileExplorer.bmp" />
-    <None Include="Commands\Resources\IconCherryPick.bmp" />
-    <None Include="Commands\Resources\IconDiff.bmp" />
-    <None Include="Commands\Resources\IconEditGitIgnore.bmp" />
-    <None Include="Commands\Resources\IconFind.bmp" />
-    <None Include="Commands\Resources\IconManageRemotes.bmp" />
-    <None Include="Commands\Resources\IconMerge.bmp" />
-    <None Include="Commands\Resources\IconRebase.bmp" />
-    <None Include="Commands\Resources\Revert.bmp" />
-    <None Include="Commands\Resources\RevisionHistory.bmp" />
-    <None Include="Commands\Resources\Stash.bmp" />
-    <Content Include="Commands\Resources\Browse.png" />
     <Content Include="index.html" />
+    <Content Include="Resources\GitExtensions.bmp" />
     <Content Include="Resources\GitPlugin.ico" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
