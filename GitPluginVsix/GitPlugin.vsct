@@ -41,6 +41,14 @@
           <CommandName>GITEXT</CommandName>
         </Strings>
       </Menu>
+
+      <!--<Menu guid="PluginCmdSet" id="Toolbar" type="Toolbar" >
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>GitExtensions</ButtonText>
+          <CommandName>GitExtensions</CommandName>
+        </Strings>
+      </Menu>-->
     </Menus>
 
     <!-- In this section you can define new menu groups. A menu group is a container for
@@ -71,6 +79,10 @@
       <Group guid="PluginCmdSet" id="ToolsGroup" priority="0x0100">
         <Parent guid="PluginCmdSet" id="TopMenu" />
       </Group>
+
+      <!--<Group guid="PluginCmdSet" id="ToolbarGroup" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="Toolbar"/>
+      </Group>-->
     </Groups>
 
     <!--Buttons section. -->
@@ -261,6 +273,55 @@
         </Strings>
       </Button>
 
+
+      <!--<Button guid="MenuCmdSet" id="Commit" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Commit</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Browse" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Browse</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Pull" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Pull</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Push" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Push</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Stash" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Stash</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="MenuCmdSet" id="Settings" type="Button" priority="0x0100">
+        <Parent guid="PluginCmdSet" id="ToolbarGroup" />
+        <Icon guid="ResourceImages" id="Browse" />
+        <Strings>
+          <ButtonText>Settings</ButtonText>
+        </Strings>
+      </Button>-->
+
     </Buttons>
 
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -288,6 +349,9 @@
       <IDSymbol name="FileMenuGroup" value="0x1050" />
       <IDSymbol name="BranchMenuGroup" value="0x1060" />
       <IDSymbol name="ToolsGroup" value="0x1070" />
+
+      <!--<IDSymbol name="Toolbar" value="0x1100" />
+      <IDSymbol name="ToolbarGroup" value="0x1110" />-->
     </GuidSymbol>
 
     <GuidSymbol name="MenuCmdSet" value="{462ba810-16a0-4970-8816-a746accc1d5c}">
@@ -347,22 +411,6 @@
       <IDSymbol name="Push" value="24" />
       <IDSymbol name="Commit" value="25" />
     </GuidSymbol>
-
-    <!--<GuidSymbol name="BrowseImage" value="{8704da28-2349-4e8e-8954-ad9710c6908f}">
-      <IDSymbol name="image" value="1" />
-    </GuidSymbol>
-
-    <GuidSymbol name="CloneImage" value="{c099ec7a-07b0-46c2-a299-2ba5592ff309}">
-      <IDSymbol name="image" value="1" />
-    </GuidSymbol>
-
-    <GuidSymbol name="guidCreateRepoImage" value="{948cd96a-78f1-4378-85c2-1d00d47941bf}">
-      <IDSymbol name="image" value="1" />
-    </GuidSymbol>
-
-    <GuidSymbol name="AboutImage" value="{b8790f45-2b28-4c55-b2ee-611cb4924384}">
-      <IDSymbol name="image" value="1" />
-    </GuidSymbol>-->
 
   </Symbols>
 </CommandTable>

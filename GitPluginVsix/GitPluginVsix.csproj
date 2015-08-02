@@ -91,7 +91,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Stash.bmp" />
     <VSCTCompile Include="GitPlugin.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <SubType>Designer</SubType>
@@ -101,7 +100,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Resources\GitExtensions.bmp" />
-    <Content Include="Resources\GitPlugin.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

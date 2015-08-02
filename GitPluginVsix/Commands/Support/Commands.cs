@@ -18,7 +18,7 @@ namespace GitPluginVsix.Commands.Support
             }
 
             var command = RegisterCommand<TCommand>(package);
-            
+
             var commandService = ((IServiceProvider)package).GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
