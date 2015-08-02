@@ -8,9 +8,15 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace GitPluginVsix.Commands
 {
-    internal class FindFile : CommandBase
+    internal class FindFile : CommandBase, ICommand
     {
-        protected override CommandTarget SupportedTargets => CommandTarget.SolutionExplorerFileItem;
+        public static Guid CommandSet { get; } = GitPlugin.CommandCmdSet;
+        public static int CommandId { get; } = 0x0410;
+
+        Guid ICommand.CommandSet { get; } = CommandSet;
+        int ICommand.CommandId { get; } = CommandId;
+
+        protected override CommandTarget SupportedTargets { get; } = CommandTarget.SolutionExplorerFileItem;
 
         public override void OnCommand(object sender, EventArgs e)
         {

@@ -126,6 +126,7 @@
         <Icon guid="ResourceImages" id="Commit" />
         <Strings>
           <ButtonText>Commit</ButtonText>
+          <ToolTipText>Commit changes</ToolTipText>
         </Strings>
       </Button>
 
@@ -383,6 +384,10 @@
       <IDSymbol name="Bash" value="0x0600" />
       <IDSymbol name="Settings" value="0x0610" />
       <IDSymbol name="About" value="0x0620" />
+
+      <IDSymbol name="Revert" value="0x0700" />
+      <IDSymbol name="Diff" value="0x0710" />
+      <IDSymbol name="FileHistory" value="0x0720" />
     </GuidSymbol>
 
     <GuidSymbol name="ResourceImages" value="{8704da28-2349-4e8e-8954-ad9710c6908f}">

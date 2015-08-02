@@ -5,19 +5,11 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
-using EnvDTE;
-using EnvDTE80;
 using GitPluginVsix.Commands;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 
 namespace GitPluginVsix
 {
@@ -52,6 +44,8 @@ namespace GitPluginVsix
         /// </summary>
         public const string PackageGuidString = "55a58158-adf2-4032-96fb-b8c3c663b46b";
 
+        public static Guid CommandCmdSet { get; } = new Guid("462ba810-16a0-4970-8816-a746accc1d5c");
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GitPlugin"/> class.
         /// </summary>
@@ -73,39 +67,35 @@ namespace GitPluginVsix
         {
             base.Initialize();
 
-            var commandSet = new Guid("462ba810-16a0-4970-8816-a746accc1d5c");
+            Commands.Support.Commands.RegisterCommand<Browse>(this);
+            Commands.Support.Commands.RegisterCommand<CloneRepo>(this);
+            Commands.Support.Commands.RegisterCommand<CreateNewRepo>(this);
 
-            Commands.Support.Commands.RegisterMenu<Browse>(commandSet, 0x0100, this);
-            Commands.Support.Commands.RegisterMenu<CloneRepo>(commandSet, 0x0110, this);
-            Commands.Support.Commands.RegisterMenu<CreateNewRepo>(commandSet, 0x0120, this);
+            Commands.Support.Commands.RegisterCommand<Commit>(this);
+            Commands.Support.Commands.RegisterCommand<Pull>(this);
+            Commands.Support.Commands.RegisterCommand<Push>(this);
+            Commands.Support.Commands.RegisterCommand<Stash>(this);
+            Commands.Support.Commands.RegisterCommand<ManageRemotes>(this);
+            Commands.Support.Commands.RegisterCommand<EditGitIgnore>(this);
 
-            Commands.Support.Commands.RegisterMenu<Commit>(commandSet, 0x0200, this);
-            Commands.Support.Commands.RegisterMenu<Pull>(commandSet, 0x0210, this);
-            Commands.Support.Commands.RegisterMenu<Push>(commandSet, 0x0220, this);
-            Commands.Support.Commands.RegisterMenu<Stash>(commandSet, 0x0230, this);
-            Commands.Support.Commands.RegisterMenu<ManageRemotes>(commandSet, 0x0240, this);
-            Commands.Support.Commands.RegisterMenu<EditGitIgnore>(commandSet, 0x0250, this);
+            Commands.Support.Commands.RegisterCommand<ApplyPatch>(this);
+            Commands.Support.Commands.RegisterCommand<FormatPatch>(this);
 
-            Commands.Support.Commands.RegisterMenu<ApplyPatch>(commandSet, 0x0300, this);
-            Commands.Support.Commands.RegisterMenu<FormatPatch>(commandSet, 0x0310, this);
+            Commands.Support.Commands.RegisterCommand<ViewChanges>(this);
+            Commands.Support.Commands.RegisterCommand<FindFile>(this);
 
-            Commands.Support.Commands.RegisterMenu<ViewChanges>(commandSet, 0x0400, this);
-            Commands.Support.Commands.RegisterMenu<FindFile>(commandSet, 0x0410, this);
+            Commands.Support.Commands.RegisterCommand<CheckoutBranch>(this);
+            Commands.Support.Commands.RegisterCommand<CreateBranch>(this);
+            Commands.Support.Commands.RegisterCommand<Merge>(this);
+            Commands.Support.Commands.RegisterCommand<Rebase>(this);
+            Commands.Support.Commands.RegisterCommand<Conflicts>(this);
+            Commands.Support.Commands.RegisterCommand<CherryPick>(this);
 
-            Commands.Support.Commands.RegisterMenu<CheckoutBranch>(commandSet, 0x0500, this);
-            Commands.Support.Commands.RegisterMenu<CreateBranch>(commandSet, 0x0510, this);
-            Commands.Support.Commands.RegisterMenu<Merge>(commandSet, 0x0520, this);
-            Commands.Support.Commands.RegisterMenu<Rebase>(commandSet, 0x0530, this);
-            Commands.Support.Commands.RegisterMenu<Conflicts>(commandSet, 0x0540, this);
-            Commands.Support.Commands.RegisterMenu<CherryPick>(commandSet, 0x0550, this);
+            Commands.Support.Commands.RegisterCommand<Bash>(this);
+            Commands.Support.Commands.RegisterCommand<Settings>(this);
+            Commands.Support.Commands.RegisterCommand<About>(this);
 
-            Commands.Support.Commands.RegisterMenu<Bash>(commandSet, 0x0600, this);
-            Commands.Support.Commands.RegisterMenu<Settings>(commandSet, 0x0610, this);
-            Commands.Support.Commands.RegisterMenu<About>(commandSet, 0x0620, this);
-           
         }
-
-       
 
         #endregion
     }

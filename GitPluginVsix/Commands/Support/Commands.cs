@@ -7,9 +7,9 @@ namespace GitPluginVsix.Commands.Support
 {
     public static class Commands
     {
-        public static Dictionary<Type, ICommand> RegisterredCommands => new Dictionary<Type, ICommand>();
+        private static readonly Dictionary<CommandIdentifier, ICommand> RegisterredCommands = new Dictionary<CommandIdentifier, ICommand>();
 
-        public static void RegisterMenu<TCommand>(Guid commandSet, int commandId, Package package)
+        public static void RegisterCommand<TCommand>(Package package)
             where TCommand : ICommand, new()
         {
             if (package == null)
@@ -17,28 +17,66 @@ namespace GitPluginVsix.Commands.Support
                 throw new ArgumentNullException(nameof(package));
             }
 
-            var command = RegisterCommand<TCommand>(package);
+            var newCommand = (ICommand)new TCommand();
+            var identifier = new CommandIdentifier(newCommand.CommandSet, newCommand.CommandId);
+
+            var command = GetCommand(identifier);
+            if (command == null)
+            {
+                RegisterredCommands[identifier] = command = newCommand;
+                command.Package = package;
+            }
 
             var commandService = ((IServiceProvider)package).GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
-                var menuCommandId = new CommandID(commandSet, commandId);
-                var menuItem = new MenuCommand(command.OnCommand, menuCommandId);
+                var menuCommandId = new CommandID(identifier.CommandSet, identifier.CommandId);
+                var menuItem = new OleMenuCommand(command.OnCommand, menuCommandId);
+                menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
                 commandService.AddCommand(menuItem);
             }
         }
 
-        public static ICommand RegisterCommand<TCommand>(Package package)
-            where TCommand : new()
+        private static void MenuItem_BeforeQueryStatus(object sender, EventArgs e)
+        {
+            var menuitem = sender as OleMenuCommand;
+            if (menuitem != null)
+            {
+                var command = GetCommand(menuitem.CommandID);
+                if (command != null)
+                {
+                    menuitem.Enabled = command.IsEnabled();
+                }
+            }
+        }
+
+        private static ICommand GetCommand(CommandID commandSet)
+        {
+            return GetCommand(new CommandIdentifier(commandSet.Guid, commandSet.ID));
+        }
+
+        public static ICommand GetCommand(Guid commandSet, int commandId)
+        {
+            return GetCommand(new CommandIdentifier(commandSet, commandId));
+        }
+
+        public static ICommand GetCommand(CommandIdentifier identifier)
         {
             ICommand command;
-            if (!RegisterredCommands.TryGetValue(typeof(TCommand), out command))
-            {
-                RegisterredCommands[typeof(TCommand)] = command = (ICommand)new TCommand();
-                command.Package = package;
-            }
-
+            RegisterredCommands.TryGetValue(identifier, out command);
             return command;
+        }
+    }
+
+    public struct CommandIdentifier
+    {
+        public Guid CommandSet { get; }
+        public int CommandId { get; }
+
+        public CommandIdentifier(Guid commandSet, int commandId)
+        {
+            CommandSet = commandSet;
+            CommandId = commandId;
         }
     }
 }

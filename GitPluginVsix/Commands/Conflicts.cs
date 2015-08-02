@@ -1,11 +1,18 @@
-﻿using EnvDTE;
+﻿using System;
+using EnvDTE;
 using GitPluginVsix.Commands.Support;
 
 namespace GitPluginVsix.Commands
 {
-    internal class Conflicts : CommandBase
+    internal class Conflicts : CommandBase, ICommand
     {
-        protected override CommandTarget SupportedTargets => CommandTarget.SolutionExplorerFileItem;
+        public static Guid CommandSet { get; } = GitPlugin.CommandCmdSet;
+        public static int CommandId { get; } = 0x0540;
+
+        Guid ICommand.CommandSet { get; } = CommandSet;
+        int ICommand.CommandId { get; } = CommandId;
+
+        protected override CommandTarget SupportedTargets { get; } = CommandTarget.SolutionExplorerFileItem;
 
         public override void OnExecute(SelectedItem item, string fileName)
         {

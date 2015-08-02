@@ -3,13 +3,14 @@ using System.Linq;
 using System.Windows.Forms;
 using EnvDTE;
 using GitPluginVsix.Git;
+using Microsoft.VisualStudio.CommandBars;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Constants = EnvDTE.Constants;
 
 namespace GitPluginVsix.Commands.Support
 {
-    internal abstract class CommandBase : ICommand
+    internal abstract class CommandBase
     {
         public Package Package { get; set; }
         protected IServiceProvider ServiceProvider => Package;
@@ -52,6 +53,7 @@ namespace GitPluginVsix.Commands.Support
                                               .FirstOrDefault(solutionItem => solutionItem.ProjectItem != null && solutionItem.ProjectItem.FileNames[1] == fileName);
 
                         OnExecute(selectedItem, fileName);
+                        return;
                     }
 
                     if (dte.SelectedItems.Count == 0)
@@ -80,7 +82,54 @@ namespace GitPluginVsix.Commands.Support
             }
         }
 
-        private void ExecuteOnSolutionItem(SelectedItem solutionItem, DTE application)
+        public virtual bool IsEnabled()
+        {
+            var isEnabled = true;
+            if (!IsTargetSupported(CommandTarget.Any))
+            {
+                {
+                    var dte = Package.GetGlobalService(typeof(SDTE)) as DTE;
+                    if (dte != null)
+                    {
+                        isEnabled = dte.SelectedItems.Count == 0
+                                        ? IsTargetSupported(dte.Solution.IsOpen ? CommandTarget.Solution : CommandTarget.Empty)
+                                        : dte.SelectedItems
+                                             .Cast<SelectedItem>()
+                                             .All(item => IsTargetSupported(GetSelectedItemTarget(item, dte)));
+                    }
+                }
+            }
+
+            return isEnabled;
+        }
+
+        public static bool ChangeCommandCaption(DTE dte, string commandBarName, string tooltipText, string caption)
+        {
+            try
+            {
+                var cmdBars = (CommandBars)dte.CommandBars;
+                var commandBar = cmdBars[commandBarName];
+                var cbcc = commandBar.Controls.Cast<CommandBarButton>().ToArray();
+                var updated = false;
+                foreach (var control in cbcc)
+                {
+                    if (control.TooltipText.Trim().Equals(tooltipText.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        updated = true;
+                        control.Caption = caption;
+                        control.Style = MsoButtonStyle.msoButtonIconAndCaption;
+                    }
+                }
+                return updated;
+            }
+            catch (Exception)
+            {
+                //ignore!
+                return false;
+            }
+        }
+
+        private void ExecuteOnSolutionItem(SelectedItem solutionItem, _DTE application)
         {
             if (solutionItem.ProjectItem != null && IsTargetSupported(GetProjectItemTarget(solutionItem.ProjectItem)))
             {
@@ -108,6 +157,17 @@ namespace GitPluginVsix.Commands.Support
             }
 
             MessageBox.Show("You need to select a file or project to use this function.", "Git Extensions", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private static CommandTarget GetSelectedItemTarget(SelectedItem selectedItem, _DTE application)
+        {
+            if (selectedItem.ProjectItem != null)
+                return GetProjectItemTarget(selectedItem.ProjectItem);
+            if (selectedItem.Project != null)
+                return CommandTarget.Project;
+            if (application.Solution.IsOpen)
+                return CommandTarget.Solution;
+            return CommandTarget.Empty;
         }
 
         private static CommandTarget GetProjectItemTarget(ProjectItem projectItem)

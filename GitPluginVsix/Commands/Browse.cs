@@ -1,11 +1,18 @@
-﻿using EnvDTE;
+﻿using System;
+using EnvDTE;
 using GitPluginVsix.Commands.Support;
 
 namespace GitPluginVsix.Commands
 {
-    internal sealed class Browse : CommandBase
+    internal sealed class Browse : CommandBase, ICommand
     {
-        protected override CommandTarget SupportedTargets => CommandTarget.Any;
+        public static Guid CommandSet { get; } = GitPlugin.CommandCmdSet;
+        public static int CommandId { get; } = 0x0100;
+
+        Guid ICommand.CommandSet { get; } = CommandSet;
+        int ICommand.CommandId { get; } = CommandId;
+
+        protected override CommandTarget SupportedTargets { get; } = CommandTarget.Any;
 
         public override void OnExecute(SelectedItem selectedItem, string fileName)
         {
