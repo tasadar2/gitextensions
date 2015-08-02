@@ -42,13 +42,13 @@
         </Strings>
       </Menu>
 
-      <!--<Menu guid="PluginCmdSet" id="Toolbar" type="Toolbar" >
+      <Menu guid="PluginCmdSet" id="Toolbar" type="Toolbar" >
         <CommandFlag>DefaultDocked</CommandFlag>
         <Strings>
           <ButtonText>GitExtensions</ButtonText>
           <CommandName>GitExtensions</CommandName>
         </Strings>
-      </Menu>-->
+      </Menu>
     </Menus>
 
     <!-- In this section you can define new menu groups. A menu group is a container for
@@ -80,9 +80,9 @@
         <Parent guid="PluginCmdSet" id="TopMenu" />
       </Group>
 
-      <!--<Group guid="PluginCmdSet" id="ToolbarGroup" priority="0x0100">
+      <Group guid="PluginCmdSet" id="ToolbarGroup" priority="0x0100">
         <Parent guid="PluginCmdSet" id="Toolbar"/>
-      </Group>-->
+      </Group>
     </Groups>
 
     <!--Buttons section. -->
@@ -274,9 +274,10 @@
       </Button>
 
 
-      <!--<Button guid="MenuCmdSet" id="Commit" type="Button" priority="0x0100">
+      <Button guid="MenuCmdSet" id="Commit" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="ToolbarGroup" />
-        <Icon guid="ResourceImages" id="Browse" />
+        <Icon guid="ResourceImages" id="Commit" />
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>Commit</ButtonText>
         </Strings>
@@ -292,7 +293,7 @@
 
       <Button guid="MenuCmdSet" id="Pull" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="ToolbarGroup" />
-        <Icon guid="ResourceImages" id="Browse" />
+        <Icon guid="ResourceImages" id="Pull" />
         <Strings>
           <ButtonText>Pull</ButtonText>
         </Strings>
@@ -300,7 +301,7 @@
 
       <Button guid="MenuCmdSet" id="Push" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="ToolbarGroup" />
-        <Icon guid="ResourceImages" id="Browse" />
+        <Icon guid="ResourceImages" id="Push" />
         <Strings>
           <ButtonText>Push</ButtonText>
         </Strings>
@@ -308,7 +309,7 @@
 
       <Button guid="MenuCmdSet" id="Stash" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="ToolbarGroup" />
-        <Icon guid="ResourceImages" id="Browse" />
+        <Icon guid="ResourceImages" id="Stash" />
         <Strings>
           <ButtonText>Stash</ButtonText>
         </Strings>
@@ -316,11 +317,11 @@
 
       <Button guid="MenuCmdSet" id="Settings" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="ToolbarGroup" />
-        <Icon guid="ResourceImages" id="Browse" />
+        <Icon guid="ResourceImages" id="Settings" />
         <Strings>
           <ButtonText>Settings</ButtonText>
         </Strings>
-      </Button>-->
+      </Button>
 
     </Buttons>
 
@@ -350,8 +351,8 @@
       <IDSymbol name="BranchMenuGroup" value="0x1060" />
       <IDSymbol name="ToolsGroup" value="0x1070" />
 
-      <!--<IDSymbol name="Toolbar" value="0x1100" />
-      <IDSymbol name="ToolbarGroup" value="0x1110" />-->
+      <IDSymbol name="Toolbar" value="0x1100" />
+      <IDSymbol name="ToolbarGroup" value="0x1110" />
     </GuidSymbol>
 
     <GuidSymbol name="MenuCmdSet" value="{462ba810-16a0-4970-8816-a746accc1d5c}">

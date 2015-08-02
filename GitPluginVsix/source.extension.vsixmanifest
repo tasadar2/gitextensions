@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="GitExtensions.Transpiria" Version="1.0" Language="en-US" Publisher="Transpiria" />
-    <DisplayName>Git Extensions</DisplayName>
+    <Identity Id="GitExtensions.Transpiria" Version="1.0.1" Language="en-US" Publisher="Transpiria" />
+    <DisplayName>GitExtensions</DisplayName>
     <Description xml:space="preserve">Allows context sensitive access to GitExtensions through Visual Studio.
 
 GitExtensions must be installed for this extension to run properly.</Description>
@@ -18,5 +18,6 @@ GitExtensions must be installed for this extension to run properly.</Description
     <Dependency Id="Microsoft.VisualStudio.MPF.14.0" DisplayName="Visual Studio MPF 14.0" d:Source="Installed" Version="[14.0]" />
   </Dependencies>
   <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
   </Assets>
 </PackageManifest>

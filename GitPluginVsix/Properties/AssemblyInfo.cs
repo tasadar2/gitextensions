@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Git Extensions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Transpiria")]
 [assembly: AssemblyProduct("Git Extensions")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]

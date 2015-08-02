@@ -38,7 +38,7 @@ namespace GitPluginVsix
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
-    [Guid(GitPlugin.PackageGuidString)]
+    [Guid(PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class GitPlugin : Package
@@ -68,8 +68,8 @@ namespace GitPluginVsix
         protected override void Initialize()
         {
             base.Initialize();
-            
-            var commandSet=new Guid("462ba810-16a0-4970-8816-a746accc1d5c");
+
+            var commandSet = new Guid("462ba810-16a0-4970-8816-a746accc1d5c");
 
             Commands.Support.Commands.RegisterMenu<Browse>(commandSet, 0x0100, this);
             Commands.Support.Commands.RegisterMenu<CloneRepo>(commandSet, 0x0110, this);
