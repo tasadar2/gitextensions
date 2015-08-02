@@ -10,6 +10,8 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using EnvDTE;
+using EnvDTE80;
 using GitPluginVsix.Commands;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.OLE.Interop;
@@ -41,6 +43,8 @@ namespace GitPluginVsix
     [Guid(PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideAutoLoad(UIContextGuids80.SolutionExists)]
+    [ProvideAutoLoad(UIContextGuids80.NoSolution)]
     public sealed class GitPlugin : Package
     {
         /// <summary>
@@ -98,9 +102,12 @@ namespace GitPluginVsix
             Commands.Support.Commands.RegisterMenu<Bash>(commandSet, 0x0600, this);
             Commands.Support.Commands.RegisterMenu<Settings>(commandSet, 0x0610, this);
             Commands.Support.Commands.RegisterMenu<About>(commandSet, 0x0620, this);
-
+           
         }
+
+       
 
         #endregion
     }
+
 }
