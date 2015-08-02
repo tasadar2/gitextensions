@@ -3,13 +3,13 @@ using GitPluginVsix.Commands.Support;
 
 namespace GitPluginVsix.Commands
 {
-    internal sealed class About : CommandBase
+    internal class ManageRemotes : CommandBase
     {
         protected override CommandTarget SupportedTargets => CommandTarget.Any;
 
-        public override void OnExecute(SelectedItem selectedItem, string fileName)
+        public override void OnExecute(SelectedItem item, string fileName)
         {
-            RunGitEx("about", fileName);
+            RunGitEx("remotes", fileName);
         }
     }
 }

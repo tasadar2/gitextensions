@@ -102,8 +102,8 @@
 
       <Button guid="MenuCmdSet" id="CreateNewRepo" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="RepoMenuGroup" />
-             <Icon guid="ResourceImages" id="CreateRepo" />
-   <Strings>
+        <Icon guid="ResourceImages" id="CreateRepo" />
+        <Strings>
           <ButtonText>Create New Repository</ButtonText>
         </Strings>
       </Button>
@@ -111,48 +111,48 @@
 
       <Button guid="MenuCmdSet" id="Commit" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-            <Icon guid="ResourceImages" id="Commit" />
-    <Strings>
+        <Icon guid="ResourceImages" id="Commit" />
+        <Strings>
           <ButtonText>Commit</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="Pull" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-             <Icon guid="ResourceImages" id="Pull" />
-   <Strings>
+        <Icon guid="ResourceImages" id="Pull" />
+        <Strings>
           <ButtonText>Pull</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="Push" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-              <Icon guid="ResourceImages" id="Push" />
-  <Strings>
+        <Icon guid="ResourceImages" id="Push" />
+        <Strings>
           <ButtonText>Push</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="Stash" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-              <Icon guid="ResourceImages" id="Stash" />
-  <Strings>
+        <Icon guid="ResourceImages" id="Stash" />
+        <Strings>
           <ButtonText>Stash</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="ManageRemotes" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-             <Icon guid="ResourceImages" id="Remotes" />
-   <Strings>
+        <Icon guid="ResourceImages" id="Remotes" />
+        <Strings>
           <ButtonText>Manage remotes</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="EditGitIgnore" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="CommitMenuGroup" />
-            <Icon guid="ResourceImages" id="Edit" />
-    <Strings>
+        <Icon guid="ResourceImages" id="Edit" />
+        <Strings>
           <ButtonText>Edit .gitignore</ButtonText>
         </Strings>
       </Button>
@@ -182,8 +182,8 @@
 
       <Button guid="MenuCmdSet" id="FindFile" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="FileMenuGroup" />
-           <Icon guid="ResourceImages" id="Find" />
-     <Strings>
+        <Icon guid="ResourceImages" id="Find" />
+        <Strings>
           <ButtonText>Find file</ButtonText>
         </Strings>
       </Button>
@@ -191,32 +191,32 @@
 
       <Button guid="MenuCmdSet" id="CheckoutBranch" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
-              <Icon guid="ResourceImages" id="CheckoutBranch" />
-  <Strings>
+        <Icon guid="ResourceImages" id="CheckoutBranch" />
+        <Strings>
           <ButtonText>Checkout branch</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="CreateBranch" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
-            <Icon guid="ResourceImages" id="CreateBranch" />
-    <Strings>
+        <Icon guid="ResourceImages" id="CreateBranch" />
+        <Strings>
           <ButtonText>Create branch</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="Merge" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
-            <Icon guid="ResourceImages" id="Merge" />
-    <Strings>
+        <Icon guid="ResourceImages" id="Merge" />
+        <Strings>
           <ButtonText>Merge</ButtonText>
         </Strings>
       </Button>
 
       <Button guid="MenuCmdSet" id="Rebase" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
-             <Icon guid="ResourceImages" id="Rebase" />
-   <Strings>
+        <Icon guid="ResourceImages" id="Rebase" />
+        <Strings>
           <ButtonText>Rebase</ButtonText>
         </Strings>
       </Button>
@@ -230,8 +230,8 @@
 
       <Button guid="MenuCmdSet" id="CherryPick" type="Button" priority="0x0100">
         <Parent guid="PluginCmdSet" id="BranchMenuGroup" />
-              <Icon guid="ResourceImages" id="CherryPick" />
-  <Strings>
+        <Icon guid="ResourceImages" id="CherryPick" />
+        <Strings>
           <ButtonText>Cherry pick</ButtonText>
         </Strings>
       </Button>
@@ -347,7 +347,6 @@
       <IDSymbol name="Push" value="24" />
       <IDSymbol name="Commit" value="25" />
     </GuidSymbol>
-
 
     <!--<GuidSymbol name="BrowseImage" value="{8704da28-2349-4e8e-8954-ad9710c6908f}">
       <IDSymbol name="image" value="1" />
