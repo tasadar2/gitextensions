@@ -67,33 +67,33 @@ namespace GitPluginVsix
         {
             base.Initialize();
 
-            Commands.Support.Commands.RegisterCommand<Browse>(this);
-            Commands.Support.Commands.RegisterCommand<CloneRepo>(this);
-            Commands.Support.Commands.RegisterCommand<CreateNewRepo>(this);
+            Commands.Support.Commands.RegisterCommand(new Browse(), this);
+            Commands.Support.Commands.RegisterCommand(new CloneRepo(), this);
+            Commands.Support.Commands.RegisterCommand(new CreateNewRepo(), this);
 
-            Commands.Support.Commands.RegisterCommand<Commit>(this);
-            Commands.Support.Commands.RegisterCommand<Pull>(this);
-            Commands.Support.Commands.RegisterCommand<Push>(this);
-            Commands.Support.Commands.RegisterCommand<Stash>(this);
-            Commands.Support.Commands.RegisterCommand<ManageRemotes>(this);
-            Commands.Support.Commands.RegisterCommand<EditGitIgnore>(this);
+            Commands.Support.Commands.RegisterCommand(new Commit(), this);
+            Commands.Support.Commands.RegisterCommand(new Pull(), this);
+            Commands.Support.Commands.RegisterCommand(new Push(), this);
+            Commands.Support.Commands.RegisterCommand(new Stash(), this);
+            Commands.Support.Commands.RegisterCommand(new ManageRemotes(), this);
+            Commands.Support.Commands.RegisterCommand(new EditGitIgnore(), this);
 
-            Commands.Support.Commands.RegisterCommand<ApplyPatch>(this);
-            Commands.Support.Commands.RegisterCommand<FormatPatch>(this);
+            Commands.Support.Commands.RegisterCommand(new ApplyPatch(), this);
+            Commands.Support.Commands.RegisterCommand(new FormatPatch(), this);
 
-            Commands.Support.Commands.RegisterCommand<ViewChanges>(this);
-            Commands.Support.Commands.RegisterCommand<FindFile>(this);
+            Commands.Support.Commands.RegisterCommand(new ViewChanges(), this);
+            Commands.Support.Commands.RegisterCommand(new FindFile(), this);
 
-            Commands.Support.Commands.RegisterCommand<CheckoutBranch>(this);
-            Commands.Support.Commands.RegisterCommand<CreateBranch>(this);
-            Commands.Support.Commands.RegisterCommand<Merge>(this);
-            Commands.Support.Commands.RegisterCommand<Rebase>(this);
-            Commands.Support.Commands.RegisterCommand<Conflicts>(this);
-            Commands.Support.Commands.RegisterCommand<CherryPick>(this);
+            Commands.Support.Commands.RegisterCommand(new CheckoutBranch(), this);
+            Commands.Support.Commands.RegisterCommand(new CreateBranch(), this);
+            Commands.Support.Commands.RegisterCommand(new Merge(), this);
+            Commands.Support.Commands.RegisterCommand(new Rebase(), this);
+            Commands.Support.Commands.RegisterCommand(new Conflicts(), this);
+            Commands.Support.Commands.RegisterCommand(new CherryPick(), this);
 
-            Commands.Support.Commands.RegisterCommand<Bash>(this);
-            Commands.Support.Commands.RegisterCommand<Settings>(this);
-            Commands.Support.Commands.RegisterCommand<About>(this);
+            Commands.Support.Commands.RegisterCommand(new Bash(), this);
+            Commands.Support.Commands.RegisterCommand(new Settings(), this);
+            Commands.Support.Commands.RegisterCommand(new About(), this);
 
         }
 

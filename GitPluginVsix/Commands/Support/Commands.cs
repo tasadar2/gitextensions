@@ -9,29 +9,27 @@ namespace GitPluginVsix.Commands.Support
     {
         private static readonly Dictionary<CommandIdentifier, ICommand> RegisterredCommands = new Dictionary<CommandIdentifier, ICommand>();
 
-        public static void RegisterCommand<TCommand>(Package package)
-            where TCommand : ICommand, new()
+        public static void RegisterCommand(ICommand command, Package package)
         {
             if (package == null)
             {
                 throw new ArgumentNullException(nameof(package));
             }
 
-            var newCommand = (ICommand)new TCommand();
-            var identifier = new CommandIdentifier(newCommand.CommandSet, newCommand.CommandId);
+            var identifier = new CommandIdentifier(command.CommandSet, command.CommandId);
 
-            var command = GetCommand(identifier);
-            if (command == null)
+            var actualCommand = GetCommand(identifier);
+            if (actualCommand == null)
             {
-                RegisterredCommands[identifier] = command = newCommand;
-                command.Package = package;
+                RegisterredCommands[identifier] = actualCommand = command;
+                actualCommand.Package = package;
             }
 
             var commandService = ((IServiceProvider)package).GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
             {
                 var menuCommandId = new CommandID(identifier.CommandSet, identifier.CommandId);
-                var menuItem = new OleMenuCommand(command.OnCommand, menuCommandId);
+                var menuItem = new OleMenuCommand(actualCommand.OnCommand, menuCommandId);
                 menuItem.BeforeQueryStatus += MenuItem_BeforeQueryStatus;
                 commandService.AddCommand(menuItem);
             }
