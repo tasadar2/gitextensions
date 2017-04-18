@@ -55,6 +55,7 @@
         </Property>
         <?endforeach ?>
         <PropertyRef Id="VS2015DEVENV" />
+        <PropertyRef Id="VS15DEVENV" />
         <DirectoryRef Id="INSTALLDIR">
             <Component Id="gitextensions.ico" Guid="*">
                 <File Source="..\bin\logo\git-extensions-logo-final-256.ico" />
@@ -199,9 +200,13 @@
                     <RegistryValue Value="&quot;[INSTALLDIR]GitExtensions.exe&quot; %1" Type="string" />
                 </RegistryKey>
             </Component>
-            <Component Id="VS2015_VSIX" Guid="*">
-                <VSExtension:VsixPackage File="GitExtensionsVSIX.vsix" PackageId="GitExtensions..3166f76a-2b07-410a-a72a-509d6a2d146c" Target="community" TargetVersion="14.0" Vital="yes" Permanent="no" />
-                <File Source="..\GitExtensionsVSIX\bin\Release\GitExtensionsVSIX.vsix" />
+            <Component Id="VS2015_VSIX" Guid="E2D5B4F7-8520-487F-82FD-E1AC9D49B3D3">
+                <VSExtension:VsixPackage File="GitExtensionsVSIX2015.vsix" PackageId="GitExtensions..3166f76a-2b07-410a-a72a-509d6a2d146c" Target="community" TargetVersion="14.0" Vital="yes" Permanent="no" />
+                <File Id="GitExtensionsVSIX2015.vsix" Source="..\GitExtensionsVSIX\bin\Release\GitExtensionsVSIX.vsix" />
+            </Component>
+            <Component Id="VS2017_VSIX" Guid="78AA9415-BA40-4DB6-A228-2F72373F1CEE">
+                <VSExtension:VsixPackage File="GitExtensionsVSIX2017.vsix" PackageId="GitExtensions..3166f76a-2b07-410a-a72a-509d6a2d146c" Target="enterprise" TargetVersion="15.0" Vital="yes" Permanent="no" />
+                <File Id="GitExtensionsVSIX2017.vsix" Source="..\GitExtensionsVSIX\bin\Release\GitExtensionsVSIX.vsix" />
             </Component>
         </DirectoryRef>
         <DirectoryRef Id="PluginsDir">
@@ -865,6 +870,10 @@
                 <Feature Id="VS2015FeatureId" Title="Visual Studio 2015 integration" Level="1">
                     <Condition Level="2">NOT VS2015DEVENV</Condition>
                     <ComponentRef Id="VS2015_VSIX" />
+                </Feature>
+                <Feature Id="VS2017FeatureId" Title="Visual Studio 2017 integration" Level="1">
+                    <Condition Level="2">NOT VS15DEVENV</Condition>
+                    <ComponentRef Id="VS2017_VSIX" />
                 </Feature>
             </Feature>
             <Feature Id="Protocol.git" Title="Assign with git://-links" Level="1">
